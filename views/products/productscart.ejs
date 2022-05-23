@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/pubcart.css" />
+    <%- include('../partials/headerlinks')%>
+    <title>Stripes</title>
+  </head>
+  <body>
+    <header><%-include('../partials/navbar')%></header>
+    <section id="cart-display">
+      <div class="cart-container">
+        <div class="cart-items"></div>
+        <div class="checkout-info">
+          <div class="total">Total: $<span id="totalDue"></span></div>
+          <div class="shipping success mb">Order now for free shipping!</div>
+          <div class="checkout">
+            <a class="btn-dark" id="checkout-btn" href="/checkout"
+              ><i class="fa-solid fa-cash-register"></i> Checkout</a
+            >
+          </div>
+          <div class="back-to">
+            <a href="/products"
+              ><i class="fa-solid fa-bag-shopping"></i> Back to Shop</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <%-include('../partials/footer')%> <%-include('../partials/bodyscripts')%>
+    <script src="/js/pubcart.js"></script>
+  </body>
+</html>

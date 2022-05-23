@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/userupdate.css" />
+    <%- include('../partials/headerlinks')%>
+    <title>Stripes</title>
+  </head>
+  <body>
+    <header><%-include('../partials/navbar')%></header>
+    <section id="user-info">
+      <h1>...Update...</h1>
+      <%if(error[0] !== undefined) {%>
+      <div class="error contained"><%=error%></div>
+      <%}%>
+      <form action="/user/<%=currentUser._id%>?_method=PATCH" method="POST">
+        <div class="user-info-container">
+          <div class="grid-item">
+            <h2>Billing Information</h2>
+            <div class="form-group">
+              <div>
+                <label for="billstreet">Street Address</label>
+              </div>
+              <div>
+                <input
+                  class="validate"
+                  value="<%=user.billaddress.street%>"
+                  type="text"
+                  name="billstreet"
+                  id="billstreet"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="billstreet2">Apt # / Suite #</label>
+              </div>
+              <div>
+                <input
+                  value="<%=user.billaddress.street2%>"
+                  type="text"
+                  name="billstreet2"
+                  id="billstreet2"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="billcountry">Country</label>
+              </div>
+              <div>
+                <select class="validate" name="billcountry" id="billcountry">
+                  <option selected value="US">United States</option>
+                  <option value="CA">Canada</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="billcity">City</label>
+              </div>
+              <div>
+                <input
+                  class="validate"
+                  value="<%=user.billaddress.city%>"
+                  type="text"
+                  name="billcity"
+                  id="billcity"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="billstate">State</label>
+              </div>
+              <div>
+                <select class="validate" name="billstate" id="billstate">
+                  <option value="" selected="selected">
+                    Select your State / Province
+                  </option>
+                  <option class="select-divide" value="">
+                    ----- States -----
+                  </option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="DC">District Of Columbia</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WA">Washington</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                  <option class="select-divide" value="">
+                    ----- Province -----
+                  </option>
+                  <option value="AB">Alberta</option>
+                  <option value="BC">British Columbia</option>
+                  <option value="MB">Manitoba</option>
+                  <option value="NB">New Brunswick</option>
+                  <option value="NL">Newfoundland and Labrador</option>
+                  <option value="NS">Nova Scotia</option>
+                  <option value="NT">Northwest Territories</option>
+                  <option value="NU">Nunavut</option>
+                  <option value="ON">Ontario</option>
+                  <option value="PE">Prince Edward Island</option>
+                  <option value="QC">Quebec</option>
+                  <option value="SK">Saskatchewan</option>
+                  <option value="YT">Yukon</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="billpostal">Postal Code</label>
+              </div>
+              <div>
+                <input
+                  class="validate"
+                  value="<%=user.billaddress.postal%>"
+                  type="text"
+                  name="billpostal"
+                  id="billpostal"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <h2>Shipping Information</h2>
+            <div class="form-group">
+              <div>
+                <label for="billstreet">Street Address</label>
+              </div>
+              <div>
+                <input
+                  class="validate"
+                  value="<%=user.shipaddress.street%>"
+                  type="text"
+                  name="shipstreet"
+                  id="shipstreet"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="shipstreet2">Apt # / Suite #</label>
+              </div>
+              <div>
+                <input
+                  value="<%=user.shipaddress.street2%>"
+                  type="text"
+                  name="shipstreet2"
+                  id="shipstreet2"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="shipcountry">Country</label>
+              </div>
+              <div>
+                <select class="validate" name="shipcountry" id="shipcountry">
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="shipcity">City</label>
+              </div>
+              <div>
+                <input
+                  class="validate"
+                  value="<%=user.shipaddress.city%>"
+                  type="text"
+                  name="shipcity"
+                  id="shipcity"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="shipstate">State</label>
+              </div>
+              <div>
+                <select class="validate" name="shipstate" id="shipstate">
+                  <option value="" selected="selected">
+                    Select your State / Province
+                  </option>
+                  <option class="select-divide" value="">
+                    ----- States -----
+                  </option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="DC">District Of Columbia</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WA">Washington</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                  <option class="select-divide" value="">
+                    ----- Province -----
+                  </option>
+                  <option value="AB">Alberta</option>
+                  <option value="BC">British Columbia</option>
+                  <option value="MB">Manitoba</option>
+                  <option value="NB">New Brunswick</option>
+                  <option value="NL">Newfoundland and Labrador</option>
+                  <option value="NS">Nova Scotia</option>
+                  <option value="NT">Northwest Territories</option>
+                  <option value="NU">Nunavut</option>
+                  <option value="ON">Ontario</option>
+                  <option value="PE">Prince Edward Island</option>
+                  <option value="QC">Quebec</option>
+                  <option value="SK">Saskatchewan</option>
+                  <option value="YT">Yukon</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="shippostal">Postal Code</label>
+              </div>
+              <div>
+                <input
+                  class="validate"
+                  value="<%=user.shipaddress.postal%>"
+                  type="text"
+                  name="shippostal"
+                  id="shippostal"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item buttons">
+          <button id="update" class="btn-update">Update Info</button>
+        </div>
+      </form>
+    </section>
+    <%-include('../partials/footer')%> <%-include('../partials/bodyscripts')%>
+    <script src="/js/pubuserupdate.js"></script>
+  </body>
+</html>

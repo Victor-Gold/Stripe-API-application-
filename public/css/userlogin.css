@@ -1,0 +1,85 @@
+#login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.login-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-img img {
+  max-width: 100%;
+}
+
+.login-form {
+  background-color: var(--white);
+  color: var(--pink);
+  min-width: 40vw;
+  padding: 1rem;
+  overflow: hidden;
+  margin: 1rem;
+}
+
+.login-form::before {
+  content: "";
+  top: -10rem;
+  left: 15rem;
+  height: 200%;
+  width: 100%;
+  background-color: rgba(255, 32, 110, 0.5);
+  position: absolute;
+  transform: rotate(22.5deg);
+  z-index: -1;
+}
+
+.btn-dark {
+  margin: 1rem 0;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.login-form h1 {
+  text-align: center;
+}
+
+.login-form h2 {
+  text-align: center;
+  font-weight: 400;
+}
+
+.alternative {
+  background-color: var(--white);
+  color: var(--pink);
+  border: 2px solid var(--pink);
+  border-radius: 8px;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.alternative span {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    flex-direction: column-reverse;
+  }
+
+  .login-form {
+    min-width: 80vw;
+  }
+
+  .login-form::before {
+    top: -20rem;
+    left: 15rem;
+    transform: rotate(22.5deg);
+  }
+}

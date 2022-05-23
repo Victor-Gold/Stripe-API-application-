@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/headerlinks')%>
+    <link rel="stylesheet" href="/css/products.css" />
+    <title>Stripes</title>
+  </head>
+  <body>
+    <header><%-include('../partials/navbar')%></header>
+    <section id="products">
+      <div class="prod-filter">
+        <ul class="filter-links">
+          <li class="jump-link-item">
+            <a href="/products/category/dresses">Dresses</a>
+          </li>
+          <li class="jump-link-item">
+            <a href="/products/category/pants">Pants</a>
+          </li>
+          <li class="jump-link-item">
+            <a href="/products/category/socks">Socks</a>
+          </li>
+          <li class="jump-link-item">
+            <a href="/products/category/sweaters">Sweaters</a>
+          </li>
+          <li class="jump-link-item">
+            <a href="/products/category/shirts">Shirts</a>
+          </li>
+        </ul>
+      </div>
+      <div class="products-content">
+        <div class="featured-message">
+          <%if(success && success.length > 0) {%>
+          <div class="success"><%=success%></div>
+          <%}%> <%if(error && error.length > 0) {%>
+          <div class="error"><%=error%></div>
+          <%}%> <% let i = 0 %> <%for(let product of products) {%>
+          <%if(product.featured) i++%><%}%> <%if(i > 0){%>
+          <div class="divide-dark"></div>
+          <h1>Featured on this Page!</h1>
+          <div class="divide-dark"></div>
+          <%}%>
+        </div>
+        <div class="featured-products">
+          <% for(let product of products) {%> <%if(product.featured === true){%>
+          <div class="product">
+            <div class="prod-img">
+              <img src="<%=product.imgurl%>" alt="" />
+            </div>
+            <div class="prod-content-blue">
+              <div>
+                <p class="prod-title"><%=product.name%></p>
+                <div class="divide"></div>
+                <p><%=product.description%></p>
+                <div class="divide"></div>
+              </div>
+              <div class="hover-info">
+                <p class="price">$<%=parseFloat(product.price).toFixed(2)%></p>
+                <a class="view-prod" href="/products/<%=product._id%>">Shop</a>
+              </div>
+            </div>
+          </div>
+          <%}%> <%}%>
+        </div>
+        <div class="divide-dark"></div>
+        <%if(cat !== null){%>
+        <h2>All <%=cat%></h2>
+        <%} else {%>
+        <h2>All Products</h2>
+        <%}%>
+        <div class="divide-dark"></div>
+      </div>
+      <div class="products-grid mb">
+        <% for(let product of products) {%>
+        <div class="product">
+          <div class="prod-img">
+            <img src="<%=product.imgurl%>" alt="" />
+          </div>
+          <div class="prod-content">
+            <div>
+              <p class="prod-title"><%=product.name%></p>
+              <div class="divide"></div>
+              <p><%=product.description%></p>
+              <div class="divide"></div>
+            </div>
+            <div class="hover-info">
+              <p class="price">$<%=parseFloat(product.price).toFixed(2)%></p>
+              <a class="view-prod" href="/products/<%=product._id%>">Shop</a>
+            </div>
+          </div>
+        </div>
+        <%}%>
+      </div>
+      <div class="pages">
+        <%if(page > 1) {%>
+        <div class="back">
+          <a href="/products?page=<%=parseInt(page) - 1%>"
+            ><i class="fa-solid fa-angle-left"></i> Back</a
+          >
+        </div>
+        <%}%> <%if(products.length === 20) {%>
+        <div class="next">
+          <a href="/products?page=<%=parseInt(page) + 1%>"
+            >Next <i class="fa-solid fa-chevron-right"></i
+          ></a>
+        </div>
+        <%}%>
+      </div>
+    </section>
+    <%-include('../partials/footer')%> <%-include('../partials/bodyscripts')%>
+    <script src="/js/pubproductindex.js"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<section class="navbar-container">
+  <nav id="navbar" class="navbar">
+    <div class="nav-flex-item">
+      <ul class="nav-ul">
+        <li class="nav-item"><a href="/">STRIPES.CO</a></li>
+      </ul>
+    </div>
+    <div class="nav-flex-item">
+      <div class="nav-ul">
+        <% if(!currentUser) { %>
+        <li class="nav-item">
+          <a href="/products"
+            ><i class="fa-solid fa-bag-shopping"></i> Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="/products/cart"
+            ><i class="fa-solid fa-cart-shopping"></i> Cart</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="/user/register"
+            ><i class="fa-solid fa-user-plus"></i> Sign Up</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="/user/login"><i class="fa-solid fa-user"></i> Login</a>
+        </li>
+        <%} else {%>
+        <li class="nav-item">
+          <a href="/products"
+            ><i class="fa-solid fa-bag-shopping"></i> Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="/products/cart"
+            ><i class="fa-solid fa-cart-shopping"></i> Cart</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="/user/logout"><i class="fa-solid fa-user"></i> Logout</a>
+        </li>
+        <li class="nav-item">
+          <a href="/user/<%=currentUser._id%>">
+            <i class="fa-solid fa-lock"></i>
+            <%=currentUser.username%> <% if(currentUser.isadmin === true){ %>
+            ADMIN <%}%>
+          </a>
+        </li>
+        <%}%>
+      </div>
+    </div>
+    <div class="burger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </nav>
+  <nav class="small-nav hide">
+    <ul class="small-nav-list">
+      <li class="small-nav-item">
+        <a href="/products">
+          <i class="fa-solid fa-bag-shopping"></i> Products</a
+        >
+      </li>
+      <li class="small-nav-item">
+        <a href="/products/cart"
+          ><i class="fa-solid fa-cart-shopping"></i> Cart</a
+        >
+      </li>
+      <% if(!currentUser) { %>
+      <li class="small-nav-item">
+        <a href="/user/register">
+          <i class="fa-solid fa-user-plus"></i> Sign Up</a
+        >
+      </li>
+      <li class="small-nav-item">
+        <a href="/user/login"><i class="fa-solid fa-user"></i> Login</a>
+      </li>
+      <%} else {%>
+      <li class="small-nav-item">
+        <a href="/user/<%=currentUser._id%>"
+          ><i class="fa-solid fa-lock"></i> <%=currentUser.username%> <%
+          if(currentUser.isadmin === true){ %> ADMIN <%}%></a
+        >
+      </li>
+      <li class="small-nav-item">
+        <a href="/user/logout"><i class="fa-solid fa-user"></i> Logout</a>
+      </li>
+      <%}%>
+    </ul>
+  </nav>
+  <% if(currentUser && currentUser.isadmin === true) {%>
+  <nav class="admin-nav">
+    <ul>
+      <li><a href="/products/new">Add a product</a></li>
+    </ul>
+  </nav>
+  <%}%>
+</section>

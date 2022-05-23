@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/usershow.css" />
+    <%- include('../partials/headerlinks')%>
+    <title>Stripes</title>
+  </head>
+  <body>
+    <header><%-include('../partials/navbar')%></header>
+    <section id="user-info">
+      <h1 id="typewrite" data-wait="2000"></h1>
+      <%if(success[0] !== undefined) {%>
+      <div class="success contained"><p><%=success%></p></div>
+      <%}%> <%if(error[0] !== undefined) {%>
+      <div class="error contained"><p><%=error%></p></div>
+      <%}%>
+      <div class="user-info-container">
+        <div class="grid-item">
+          <h2>General info</h2>
+          <ul>
+            <li>Username: <%=user.username%></li>
+            <li>Email Address: <%=user.email%></li>
+          </ul>
+          <%if(currentUser.emailme === false) {%>
+          <div class="offers">
+            <p>Would you like to sign up to recieve exclusive deals?</p>
+            <p>Sign up: <a class="here" href="/#rewards">Here</a></p>
+          </div>
+          <%}%>
+        </div>
+        <div class="grid-item">
+          <h2>Billing Information</h2>
+          <ul>
+            <li>Street Address: <%=user.billaddress.street%></li>
+            <li>Apt # / Suite #: <%=user.billaddress.street2%></li>
+            <li>Country: <%=user.billaddress.country%></li>
+            <li>City: <%=user.billaddress.city%></li>
+            <li>State: <%=user.billaddress.state%></li>
+            <li>Postal Code: <%=user.billaddress.postal%></li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h2>Shipping Information</h2>
+          <ul>
+            <li>Street Address: <%=user.shipaddress.street%></li>
+            <li>Apt # / Suite #: <%=user.shipaddress.street2%></li>
+            <li>Country: <%=user.shipaddress.country%></li>
+            <li>City: <%=user.shipaddress.city%></li>
+            <li>State: <%=user.shipaddress.state%></li>
+            <li>Postal Code: <%=user.shipaddress.postal%></li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid-item buttons">
+        <a class="btn-update" href="/user/<%=currentUser._id%>/update"
+          >Update Info</a
+        >
+        <a class="btn-delete" id="accountdelete" href="#">Delete my Account</a>
+      </div>
+    </section>
+    <section class="modal hide">
+      <div class="modal-container">
+        <div class="modal-content">
+          <p class="modal-message error"></p>
+          <form
+            action="/user/<%=currentUser._id%>?_method=DELETE"
+            method="POST"
+          >
+            <div>
+              <button class="btn-delete">Delete Account</button>
+            </div>
+            <div class="back-btn">
+              <a class="btn-update" id="modalBack" href="#">No, take me back</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <%-include('../partials/footer')%> <%-include('../partials/bodyscripts')%>
+    <script src="/js/pubusershow.js"></script>
+  </body>
+</html>

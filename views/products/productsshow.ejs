@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/headerlinks')%>
+    <link rel="stylesheet" href="/css/productshow.css" />
+    <title>Stripes</title>
+  </head>
+  <body>
+    <script>
+      const productId = "<%=product._id%>";
+      const productName = "<%=product.name%>";
+      const productPrice = "<%=product.price%>";
+      const prodImgurl = "<%=product.imgurl%>";
+      /// JSON.stringify removes line break characters that are added in to db from textarea
+      const prodDescription = "<%=JSON.stringify(product.description)%>";
+    </script>
+    <header><%-include('../partials/navbar')%></header>
+    <section id="create-product">
+      <div class="product-flex">
+        <div class="prod-img">
+          <img src="<%=product.imgurl%>" alt="" />
+        </div>
+        <div class="prod-info">
+          <%if(success && success.length > 0) {%>
+          <div class="success"><%=success%></div>
+          <%}%>
+          <div id="addedMsg" class="success hide"></div>
+          <div class="mb">
+            <h2 class="title"><%=product.name%></h2>
+            <div class="dark-divide"></div>
+            <p class="description"><%=product.description%></p>
+          </div>
+
+          <div>
+            <%if((product.smallinstock+product.mediuminstock+product.larginstock)
+            > 1){%>
+            <div class="stock">
+              Availability: <span class="underline-warning">OUT OF STOCK</span>
+            </div>
+            <%}%>
+            <div class="stock mb">
+              Availability: <span class="underline-okay">IN STOCK</span>
+            </div>
+            <div class="mb">
+              <p class="price">
+                Price: $<%=parseFloat(product.price).toFixed(2)%>
+              </p>
+            </div>
+            <div class="order mb">
+              <label for="size">Select Size:</label>
+              <select name="size" id="size">
+                <%if(product.smallinstock > 0) {%>
+                <option value="small">Small</option>
+                <%}%> <%if(product.mediuminstock > 0) {%>
+                <option value="medium">Medium</option>
+                <%}%> <%if(product.largeinstock > 0) {%>
+                <option value="large">Large</option>
+                <%}%>
+              </select>
+            </div>
+            <div class="buttons">
+              <div class="button">
+                <a class="btn-update" href="#" id="addToCart"
+                  ><i class="fa-solid fa-cart-plus"></i> Add to Cart</a
+                >
+              </div>
+              <%if(currentUser && currentUser.isadmin === true){%>
+              <div>
+                <form action="/products/<%=product._id%>/update" method="GET">
+                  <button id="updateProduct">
+                    <i class="fa-solid fa-pen"></i> Update Product
+                  </button>
+                </form>
+              </div>
+              <div>
+                <form
+                  action="/products/<%=product._id%>?_method=DELETE"
+                  method="POST"
+                >
+                  <button id="deleteProduct">
+                    <i class="fa-solid fa-circle-minus"></i> Delete Product
+                  </button>
+                </form>
+              </div>
+              <%}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <%-include('../partials/footer')%> <%-include('../partials/bodyscripts')%>
+    <script src="/js/pubproductshow.js"></script>
+  </body>
+</html>
